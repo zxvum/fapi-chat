@@ -1,0 +1,37 @@
+version: "3.7"
+services:
+  db:
+    image: postgres
+    container_name: db_app
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    networks:
+      - fapi
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - fapi
+    depends_on:
+      - db
+
+#  app:
+#    build:
+#      context: .
+#    env_file:
+#      - .env
+#    container_name: fastapi_app
+#    command: ["/fastapi_app/docker/app.sh"]
+#    ports:
+#      - "9999:8000"
+#    depends_on:
+#      - db
+
+networks:
+  fapi:
+    driver: bridge
