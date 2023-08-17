@@ -7,7 +7,7 @@ load_dotenv()
 
 
 class Settings(BaseSettings):
-    DB_HOST: str = 'localhost'
+    DB_HOST: str = '0.0.0.0'
     DB_PORT: str = 5432
     DB_NAME: str
     DB_USER: str
